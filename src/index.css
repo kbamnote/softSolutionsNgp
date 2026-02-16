@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Exact Colors from Image 2 */
+  --color-easilon-cyan: #00d5ff;
+  --color-easilon-navy: #1c2c52;
+  --color-easilon-overlay: #1e2d53;
+  --color-easilon-gray: #64748b;
+  
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: white;
+}
+
+/* Custom CSS for Range Slider to match Image 2 */
+input[type='range'] {
+  height: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  background-color: #e5e7eb;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #00d5ff;
+  appearance: none;
+  border: 2px solid white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
