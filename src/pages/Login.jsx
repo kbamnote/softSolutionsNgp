@@ -48,7 +48,7 @@ const Login = () => {
             <div className="w-14 h-14 bg-[#00cde5] rounded-full flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-cyan-100">
               $
             </div>
-            <span className="text-3xl font-black text-[#1c2c52] tracking-tighter">easilon</span>
+            <span className="text-3xl font-black text-[#1c2c52] tracking-tighter">Soft Solution</span>
           </div>
           <h2 className="text-3xl font-bold text-[#1c2c52]">Welcome Back</h2>
           <p className="mt-2 text-sm text-[#828282]">

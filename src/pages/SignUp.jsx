@@ -21,7 +21,7 @@ const SignUp = () => {
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
             <div className="w-10 h-10 bg-[#00cde5] rounded-full flex items-center justify-center text-white font-black text-xl">$</div>
-            <span className="text-2xl font-extrabold text-[#1c2c52] tracking-tight">easilon</span>
+            <span className="text-2xl font-extrabold text-[#1c2c52] tracking-tight">Soft Solution</span>
           </div>
           <h2 className="text-3xl font-extrabold text-[#1c2c52]">Create Account</h2>
           <p className="mt-2 text-sm text-gray-500">Join us to manage your loans easily</p>
