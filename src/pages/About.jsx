@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Check, Award, Users, TrendingUp, Heart, Target, Eye, ShieldCheck, Milestone, Globe, Handshake } from 'lucide-react';
 
 const About = () => {
@@ -251,9 +252,12 @@ const About = () => {
               <p className="text-gray-400">256-bit encryption for all your financial data and transactions.</p>
             </div>
           </div>
-          <button className="px-10 py-4 bg-easilon-cyan hover:bg-white hover:text-easilon-navy transition-all font-bold uppercase tracking-widest text-sm rounded-lg">
+          <Link
+            to="/privacy-policy"
+            className="px-10 py-4 bg-easilon-cyan hover:bg-white hover:text-easilon-navy transition-all font-bold uppercase tracking-widest text-sm rounded-lg inline-block"
+          >
             View Privacy Policy
-          </button>
+          </Link>
         </div>
       </section>
     </div>

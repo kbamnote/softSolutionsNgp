@@ -5,7 +5,6 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Ye line page ko instant top par bhej degi bina scroll kiye
     window.scrollTo(0, 0);
   }, [pathname]);
 

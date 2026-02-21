@@ -16,49 +16,49 @@ const Home = () => {
       <Hero />
 
       {/* --- 1. WELCOME SECTION --- */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto max-w-7xl px-6 flex flex-col lg:flex-row items-center gap-20">
-          <div className="lg:w-1/2 relative">
-            <div className="relative z-10 w-[85%] rounded-lg overflow-hidden border-[10px] border-white shadow-2xl">
-              <img src={manImage} alt="Man" className="w-full h-[550px] object-cover" />
+      <section className="py-12 sm:py-16 lg:py-24 bg-white overflow-hidden">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="lg:w-1/2 relative w-full">
+            <div className="relative z-10 w-full sm:w-[85%] mx-auto rounded-lg overflow-hidden border-[10px] border-white shadow-2xl">
+              <img src={manImage} alt="Man" className="w-full h-[350px] sm:h-[450px] lg:h-[550px] object-cover" />
             </div>
-            <div className="absolute top-10 -left-6 z-30 bg-easilon-cyan p-8 w-48 h-48 flex flex-col items-center justify-center text-white shadow-lg">
-              <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center mb-3">
-                <div className="ml-1 w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent"></div>
+            <div className="absolute top-4 sm:top-10 -left-2 sm:-left-6 z-30 bg-easilon-cyan p-4 sm:p-8 w-32 sm:w-48 h-32 sm:h-48 flex flex-col items-center justify-center text-white shadow-lg">
+              <div className="w-8 sm:w-12 h-8 sm:h-12 rounded-full border-2 border-white flex items-center justify-center mb-2 sm:mb-3">
+                <div className="ml-1 w-0 h-0 border-t-[4px] sm:border-t-[6px] border-t-transparent border-l-[8px] sm:border-l-[10px] border-l-white border-b-[4px] sm:border-b-[6px] border-b-transparent"></div>
               </div>
-              <h3 className="text-4xl font-black italic">15+</h3>
-              <p className="text-[10px] font-bold uppercase tracking-tighter text-center">Year Of Experience</p>
+              <h3 className="text-2xl sm:text-4xl font-black italic">15+</h3>
+              <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-tighter text-center">Year Of Experience</p>
               <div className="absolute -bottom-4 left-0 w-0 h-0 border-t-[16px] border-t-easilon-navy border-r-[16px] border-r-transparent"></div>
             </div>
-            <div className="absolute -bottom-10 right-0 z-20 w-[55%] rounded-lg overflow-hidden border-[10px] border-white shadow-2xl">
-              <img src={piggyImage} alt="Piggy Bank" className="w-full h-64 object-cover" />
+            <div className="absolute -bottom-6 sm:-bottom-10 right-0 z-20 w-[45%] sm:w-[55%] rounded-lg overflow-hidden border-[10px] border-white shadow-2xl">
+              <img src={piggyImage} alt="Piggy Bank" className="w-full h-40 sm:h-64 object-cover" />
             </div>
           </div>
 
-          <div className="lg:w-1/2 mt-16 lg:mt-0">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="lg:w-1/2 mt-12 sm:mt-16 lg:mt-0 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6">
               <div className="flex gap-1">
                 <div className="w-6 h-[2px] bg-easilon-cyan"></div>
                 <div className="w-3 h-[2px] bg-easilon-cyan"></div>
               </div>
               <span className="text-easilon-cyan font-bold uppercase tracking-[0.2em] text-xs">Welcome to Easilon</span>
             </div>
-            <h2 className="text-5xl lg:text-[60px] font-black text-easilon-navy leading-[1.1] mb-8 tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[60px] font-black text-easilon-navy leading-[1.1] mb-6 sm:mb-8 tracking-tighter">
               Our Loans Will Fill Your Dreams Come True
             </h2>
-            <p className="text-easilon-gray text-lg mb-10 leading-relaxed">
+            <p className="text-easilon-gray text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
-            <div className="grid grid-cols-2 gap-y-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-4 mb-8 sm:mb-10">
               {['Quick Loan Process', 'Small Business Loan', 'Very Low Rates', 'Studying Abroad Loan'].map((item) => (
-                <div key={item} className="flex items-center gap-2 group">
+                <div key={item} className="flex items-center justify-center lg:justify-start gap-2 group">
                   <div className="w-5 h-5 rounded-full border-2 border-easilon-cyan flex items-center justify-center text-easilon-cyan text-[10px] font-bold group-hover:bg-easilon-cyan group-hover:text-white transition-all">✓</div>
-                  <span className="font-bold text-easilon-navy">{item}</span>
+                  <span className="font-bold text-easilon-navy text-sm sm:text-base">{item}</span>
                 </div>
               ))}
             </div>
             <Link to="/about" className="inline-block">
-              <button className="group border-2 border-gray-100 px-8 py-4 flex items-center gap-4 hover:border-easilon-cyan transition-all">
+              <button className="group border-2 border-gray-100 px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center lg:justify-start gap-4 hover:border-easilon-cyan transition-all">
                 <span className="text-easilon-cyan font-black text-sm uppercase tracking-widest">Know About Us</span>
                 <div className="w-10 h-[2px] bg-gray-200 group-hover:bg-easilon-cyan relative">
                   <span className="absolute -right-1 -top-[8px] text-easilon-cyan font-bold text-lg">»</span>
@@ -70,9 +70,9 @@ const Home = () => {
       </section>
 
       {/* --- NEW: STATS COUNTER SECTION --- */}
-      <section className="py-16 bg-easilon-navy">
-        <div className="container mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+      <section className="py-12 sm:py-16 bg-easilon-navy">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
             {[
               { label: 'Happy Clients', value: '12K+', icon: <Users /> },
               { label: 'Loan Approved', value: '1500+', icon: <CheckCircle2 /> },
@@ -80,9 +80,9 @@ const Home = () => {
               { label: 'Partner Banks', value: '25+', icon: <Building2 /> },
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className="text-easilon-cyan mb-4 opacity-80">{stat.icon}</div>
-                <h3 className="text-4xl font-black text-white mb-2">{stat.value}</h3>
-                <p className="text-gray-400 uppercase tracking-widest text-xs font-bold">{stat.label}</p>
+                <div className="text-easilon-cyan mb-3 sm:mb-4 opacity-80 scale-75 sm:scale-100">{stat.icon}</div>
+                <h3 className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">{stat.value}</h3>
+                <p className="text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs font-bold">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -90,18 +90,18 @@ const Home = () => {
       </section>
 
       {/* --- 2. LOAN SERVICES GRID SECTION --- */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto max-w-7xl px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-6 h-[2px] bg-easilon-cyan"></div>
               <span className="text-easilon-cyan font-bold uppercase tracking-[0.2em] text-xs">Our Services</span>
               <div className="w-6 h-[2px] bg-easilon-cyan"></div>
             </div>
-            <h2 className="text-5xl font-black text-easilon-navy mb-6 tracking-tighter">Loan Solutions For Every Need</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-easilon-navy mb-4 sm:mb-6 tracking-tighter">Loan Solutions For Every Need</h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { title: 'Personal Loan', icon: <Users size={30} />, desc: 'Flexible funding for your personal expenses and dreams.' },
               { title: 'Business Loan', icon: <Briefcase size={30} />, desc: 'Grow your company with our competitive commercial rates.' },
@@ -110,12 +110,12 @@ const Home = () => {
               { title: 'Car Loan', icon: <Zap size={30} />, desc: 'Drive your dream car today with instant approval options.' },
               { title: 'Gold Loan', icon: <Star size={30} />, desc: 'Unlock the value of your assets with secure gold financing.' },
             ].map((service, idx) => (
-              <div key={idx} className="p-10 border border-gray-100 hover:border-easilon-cyan hover:shadow-xl transition-all group rounded-xl">
-                <div className="w-16 h-16 bg-[#f8fbff] text-easilon-cyan rounded-full flex items-center justify-center mb-6 group-hover:bg-easilon-cyan group-hover:text-white transition-all">
+              <div key={idx} className="p-6 sm:p-10 border border-gray-100 hover:border-easilon-cyan hover:shadow-xl transition-all group rounded-xl">
+                <div className="w-14 sm:w-16 h-14 sm:h-16 bg-[#f8fbff] text-easilon-cyan rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-easilon-cyan group-hover:text-white transition-all">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-black text-easilon-navy mb-4 group-hover:text-easilon-cyan transition-colors">{service.title}</h3>
-                <p className="text-easilon-gray mb-6">{service.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-black text-easilon-navy mb-3 sm:mb-4 group-hover:text-easilon-cyan transition-colors">{service.title}</h3>
+                <p className="text-easilon-gray text-sm sm:text-base mb-4 sm:mb-6">{service.desc}</p>
                 <Link to="/services" className="text-easilon-navy font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-easilon-cyan">
                   Read More <span className="text-lg">»</span>
                 </Link>
@@ -126,27 +126,27 @@ const Home = () => {
       </section>
 
       {/* --- NEW: HOW IT WORKS SECTION --- */}
-      <section className="py-24 bg-white border-t border-gray-50">
-        <div className="container mx-auto max-w-7xl px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/3">
-              <div className="flex items-center gap-3 mb-6">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white border-t border-gray-50">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
+            <div className="lg:w-1/3 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6">
                 <div className="w-6 h-[2px] bg-easilon-cyan"></div>
                 <span className="text-easilon-cyan font-bold uppercase tracking-[0.2em] text-xs">Easy Process</span>
               </div>
-              <h2 className="text-5xl font-black text-easilon-navy leading-tight mb-6">Get Your Loan In 3 Easy Steps</h2>
-              <p className="text-easilon-gray mb-8">We have simplified the loan application process to ensure you get your funds as quickly as possible without any headache.</p>
-              <Link to="/apply" className="bg-easilon-cyan text-white px-8 py-4 inline-block font-black uppercase text-xs tracking-widest hover:bg-easilon-navy transition-all">Apply Now</Link>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-easilon-navy leading-tight mb-4 sm:mb-6">Get Your Loan In 3 Easy Steps</h2>
+              <p className="text-easilon-gray text-sm sm:text-base mb-6 sm:mb-8">We have simplified the loan application process to ensure you get your funds as quickly as possible without any headache.</p>
+              <Link to="/apply" className="bg-easilon-cyan text-white px-6 sm:px-8 py-3 sm:py-4 inline-block font-black uppercase text-xs tracking-widest hover:bg-easilon-navy transition-all">Apply Now</Link>
             </div>
-            <div className="lg:w-2/3 grid md:grid-cols-3 gap-8">
+            <div className="lg:w-2/3 grid sm:grid-cols-3 gap-6 sm:gap-8 w-full">
               {[
                 { step: '01', title: 'Apply Online', desc: 'Fill out our simple digital form in less than 5 minutes.' },
                 { step: '02', title: 'Get Approval', desc: 'Our experts review your profile and provide instant feedback.' },
                 { step: '03', title: 'Receive Funds', desc: 'Once approved, funds are transferred to your account.' },
               ].map((item, i) => (
-                <div key={i} className="bg-[#f8fbff] p-10 rounded-2xl border-b-4 border-transparent hover:border-easilon-cyan transition-all">
-                  <span className="text-4xl font-black text-easilon-cyan/30 mb-6 block">{item.step}</span>
-                  <h3 className="text-xl font-black text-easilon-navy mb-4">{item.title}</h3>
+                <div key={i} className="bg-[#f8fbff] p-6 sm:p-10 rounded-2xl border-b-4 border-transparent hover:border-easilon-cyan transition-all text-center sm:text-left">
+                  <span className="text-3xl sm:text-4xl font-black text-easilon-cyan/30 mb-4 sm:mb-6 block">{item.step}</span>
+                  <h3 className="text-lg sm:text-xl font-black text-easilon-navy mb-3 sm:mb-4">{item.title}</h3>
                   <p className="text-easilon-gray text-sm leading-relaxed">{item.desc}</p>
                 </div>
               ))}

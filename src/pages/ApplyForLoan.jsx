@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronLeft, Check, User, Briefcase, IndianRupee, FileText, Send } from 'lucide-react';
+import { ToastContainer, useToast } from '../components/Toast';
 
 const ApplyForLoan = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const { toasts, addToast, removeToast } = useToast();
   const [formData, setFormData] = useState({
     // Personal Info
     firstName: '',
@@ -42,7 +44,48 @@ const ApplyForLoan = () => {
     });
   };
 
+  // Validation function for each step
+  const validateStep = (step) => {
+    const errors = [];
+    
+    switch (step) {
+      case 1:
+        if (!formData.firstName.trim()) errors.push('First Name is required');
+        if (!formData.lastName.trim()) errors.push('Last Name is required');
+        if (!formData.email.trim()) errors.push('Email is required');
+        if (!formData.phone.trim()) errors.push('Phone Number is required');
+        if (!formData.dob) errors.push('Date of Birth is required');
+        if (!formData.panNumber.trim()) errors.push('PAN Number is required');
+        if (!formData.address.trim()) errors.push('Address is required');
+        if (!formData.city.trim()) errors.push('City is required');
+        if (!formData.state) errors.push('State is required');
+        if (!formData.pincode.trim()) errors.push('Pincode is required');
+        break;
+      case 2:
+        if (!formData.employmentStatus) errors.push('Employment Status is required');
+        if (!formData.monthlyIncome.trim()) errors.push('Monthly Income is required');
+        break;
+      case 3:
+        if (!formData.loanType) errors.push('Loan Type is required');
+        if (!formData.loanAmount.trim()) errors.push('Loan Amount is required');
+        if (!formData.loanTerm) errors.push('Loan Term is required');
+        break;
+      case 4:
+        if (!formData.agreeTerms) errors.push('You must agree to the Terms and Conditions');
+        break;
+      default:
+        break;
+    }
+    
+    return errors;
+  };
+
   const nextStep = () => {
+    const errors = validateStep(currentStep);
+    if (errors.length > 0) {
+      addToast(errors[0], 'error');
+      return;
+    }
     if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
   };
 
@@ -52,7 +95,20 @@ const ApplyForLoan = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your loan application! We have received your details and our team will contact you within 24-48 hours for further processing.');
+    
+    // Validate all steps before final submission
+    const allErrors = [];
+    for (let i = 1; i <= totalSteps; i++) {
+      const stepErrors = validateStep(i);
+      allErrors.push(...stepErrors);
+    }
+    
+    if (allErrors.length > 0) {
+      addToast('Please fill in all required fields before submitting.', 'error');
+      return;
+    }
+    
+    addToast('Thank you for your loan application! We have received your details and our team will contact you within 24-48 hours for further processing.', 'success');
   };
 
   const steps = [
@@ -68,8 +124,10 @@ const ApplyForLoan = () => {
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
+    <>
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
+      <div>
+        {/* Hero Section */}
       <section className="relative py-24 bg-easilon-navy overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -433,38 +491,44 @@ const ApplyForLoan = () => {
             )}
 
               {/* Navigation Buttons */}
-              <div className="flex justify-between mt-8 pt-6 border-t">
+              <div className="flex flex-col sm:flex-row justify-between mt-8 pt-6 border-t gap-3 sm:gap-0">
                 <button
                   type="button"
                   onClick={prevStep}
                   disabled={currentStep === 1}
-                  className={`flex items-center gap-2 px-6 py-3 font-semibold rounded-lg ${
+                  className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-3 font-semibold rounded-lg w-full sm:w-auto ${
                     currentStep === 1
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       : 'bg-gray-200 text-easilon-navy hover:bg-gray-300'
                   }`}
                 >
-                  <ChevronLeft size={18} /> Previous
+                  <ChevronLeft size={18} />
+                  <span className="hidden sm:inline">Previous</span>
+                  <span className="sm:hidden">Prev</span>
                 </button>
                 {currentStep < totalSteps ? (
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="flex items-center gap-2 px-6 py-3 bg-easilon-cyan text-white font-semibold rounded-lg hover:bg-easilon-navy transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-easilon-cyan text-white font-semibold rounded-lg hover:bg-easilon-navy transition-colors w-full sm:w-auto"
                   >
-                    Next <ChevronRight size={18} />
+                    <span className="hidden sm:inline">Next</span>
+                    <span className="sm:hidden">Next</span>
+                    <ChevronRight size={18} />
                   </button>
                 ) : (
                   <button
                     type="submit"
                     disabled={!formData.agreeTerms}
-                    className={`flex items-center gap-2 px-8 py-3 font-semibold rounded-lg ${
+                    className={`flex items-center justify-center gap-2 px-4 sm:px-8 py-3 font-semibold rounded-lg w-full sm:w-auto ${
                       formData.agreeTerms
                         ? 'bg-easilon-cyan text-white hover:bg-easilon-navy'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                   >
-                    Submit Application <Send size={18} />
+                    <span className="hidden sm:inline">Submit Application</span>
+                    <span className="sm:hidden">Submit</span>
+                    <Send size={18} />
                   </button>
                 )}
               </div>
@@ -472,7 +536,8 @@ const ApplyForLoan = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

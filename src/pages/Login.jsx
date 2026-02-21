@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { Eye, EyeOff, Lock, Mail, ArrowRight } from 'lucide-react';
+import { ToastContainer, useToast } from '../components/Toast';
 
 const Login = () => {
   const navigate = useNavigate(); 
@@ -10,24 +11,55 @@ const Login = () => {
     password: '',
     rememberMe: false,
   });
+  const [loading, setLoading] = useState(false);
+  const { toasts, addToast, removeToast } = useToast();
 
   // --- NAYA FUNCTION: Social Login handles ---
   const handleSocialLogin = (platform) => {
     console.log(`Logging in with ${platform}...`);
     
     // Yahan popup ki simulation ho rahi hai
-    alert(`${platform} login processing...`);
-    
-    // Click karne par 1 second baad Home page par bhej dega
-    setTimeout(() => {
-      navigate('/');
-    }, 1000);
+    addToast(`${platform} login is currently unavailable. Please use email login.`, 'info');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login attempt with:', formData);
-    navigate('/'); 
+    setLoading(true);
+
+    try {
+      console.log('Attempting login with:', { email: formData.email });
+      
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      console.log('Response status:', response.status);
+      
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (response.ok && data.success) {
+        // Store token and user data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        addToast('Login successful! Welcome back.', 'success');
+        setTimeout(() => navigate('/'), 1000);
+      } else {
+        addToast(data.message || 'Login failed. Please check your credentials.', 'error');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      addToast('An error occurred during login. Please try again.', 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -39,8 +71,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6f8] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+    <>
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
+      <div className="min-h-screen bg-[#f6f6f8] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
         
         {/* Logo & Header */}
         <div className="text-center">
@@ -132,9 +166,10 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="group relative w-full flex justify-center items-center py-4 px-4 border border-transparent text-sm font-black rounded-xl text-white bg-[#00cde5] hover:bg-[#1c2c52] shadow-lg shadow-cyan-100 transition-all duration-300"
+            disabled={loading}
+            className="group relative w-full flex justify-center items-center py-4 px-4 border border-transparent text-sm font-black rounded-xl text-white bg-[#00cde5] hover:bg-[#1c2c52] shadow-lg shadow-cyan-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Sign In 
+            {loading ? 'Signing In...' : 'Sign In'}
             <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
 
@@ -178,8 +213,9 @@ const Login = () => {
             Facebook
           </button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

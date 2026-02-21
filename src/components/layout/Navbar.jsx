@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, ShoppingCart, ChevronDown, Menu, X, FileText } from 'lucide-react';
+import { Search, ShoppingCart, ChevronDown, Menu, X, FileText, User } from 'lucide-react';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Check login status on component mount and when location changes
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
 
   const allData = [
     { name: 'Home', path: '/' },
@@ -107,6 +125,14 @@ const Navbar = () => {
               <span className="absolute -top-2 -right-2 bg-easilon-cyan text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
             </button>
 
+            {isLoggedIn && (
+              <Link
+                to="/profile"
+                className="bg-easilon-navy text-white px-4 py-2 font-bold text-xs tracking-wider flex items-center gap-2 hover:bg-easilon-cyan transition-all uppercase rounded"
+              >
+                <User size={16} /> Profile
+              </Link>
+            )}
             <Link
               to="/apply"
               className="bg-easilon-cyan text-white px-6 py-3 font-bold text-xs tracking-wider flex items-center gap-2 hover:bg-easilon-navy transition-all uppercase"
@@ -138,6 +164,15 @@ const Navbar = () => {
                 </Link>
               ))}
               <hr className="border-gray-50" />
+              {isLoggedIn && (
+                <Link
+                  to="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="bg-easilon-navy text-white px-6 py-3 font-bold text-sm text-center uppercase tracking-wider flex items-center justify-center gap-2"
+                >
+                  <User size={16} /> Profile
+                </Link>
+              )}
               <Link
                 to="/apply"
                 onClick={() => setMobileMenuOpen(false)}

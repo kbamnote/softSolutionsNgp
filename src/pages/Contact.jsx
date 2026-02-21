@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { ToastContainer, useToast } from '../components/Toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,11 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+  const { toasts, addToast, removeToast } = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for your message! We will get back to you soon.');
+    addToast('Thank you for your message! We will get back to you soon.', 'success');
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
@@ -44,8 +46,10 @@ const Contact = () => {
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
+    <>
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
+      <div>
+        {/* Hero Section */}
       <section className="relative py-32 bg-easilon-navy overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -180,7 +184,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
